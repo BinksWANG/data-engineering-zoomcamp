@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: staging
+    database: "{{ env_var('DBT_BIGQUERY_PROJECT', 'kestra-sandbox-449905') }}"
+    schema:   "{{ env_var('DBT_BIGQUERY_SOURCE_DATASET', 'dbt_binkswang') }}"
+    tables:
+      - name: ext_green_taxi
+      - name: ext_yellow_taxi
+      - name: ext_fhv
+      - name: ext_fhvhv
