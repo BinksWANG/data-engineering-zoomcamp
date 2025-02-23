@@ -6,16 +6,16 @@
 
 with trip_durations as (
     select
-        pickup_location_id,
-        dropoff_location_id,
+        PUlocationID as pickup_location_id,
+        DOlocationID as dropoff_location_id,
         extract(year from pickup_datetime) as year,
         extract(month from pickup_datetime) as month,
-        timestamp_diff(dropoff_datetime, pickup_datetime, second) as trip_duration
+        timestamp_diff(dropOff_datetime, pickup_datetime, second) as trip_duration
     from {{ ref('dim_fhv_trips') }}
     where pickup_datetime is not null
-      and dropoff_datetime is not null
-      and pickup_location_id is not null
-      and dropoff_location_id is not null
+      and dropOff_datetime is not null
+      and PUlocationID is not null
+      and DOlocationID is not null
 ),
 
 percentiles as (
